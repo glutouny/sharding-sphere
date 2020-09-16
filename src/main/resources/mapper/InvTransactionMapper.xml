@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yangl.shardingsphere.infra.mapper.InvTransactionMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="com.yangl.shardingsphere.domain.entity.InvTransaction">
+        <id column="inv_transactions_id" jdbcType="BIGINT" property="invTransactionsId" />
+    </resultMap>
+
+
+</mapper>

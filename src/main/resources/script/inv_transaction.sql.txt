@@ -1,0 +1,101 @@
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for inv_transaction_0
+-- ----------------------------
+DROP TABLE IF EXISTS `inv_transaction_0`;
+CREATE TABLE `inv_transaction_0` (
+  `inv_transactions_id` bigint(20) NOT NULL,
+  `pos_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '服务点编码',
+  `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'sku商品编码',
+  `transaction_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '事务编码',
+  `transaction_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事务类型，值集：O2INV.TRANSACTION_TYPE',
+  `processing_status_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '处理状态，值集：O2INV.PROCESSING_STATUS',
+  `on_hand_inc` bigint(20) NOT NULL COMMENT '现有量',
+  `reserved_inc` bigint(20) NOT NULL COMMENT '保留量',
+  `message` varchar(4000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '错误消息',
+  `source_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源',
+  `source_detail_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源明细',
+  `transaction_source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '触发来源',
+  `source_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '来源类型.值集：O2INV.SOURCE_TYPE',
+  `source_date` datetime NOT NULL COMMENT '来源时间',
+  `source_timestamp` bigint(20) DEFAULT '0' COMMENT '事务来源时间戳',
+  `wms_operator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'WMS操作人',
+  `wms_id` bigint(20) DEFAULT NULL COMMENT 'wms事务id',
+  `object_version_number` bigint(20) NOT NULL DEFAULT '1' COMMENT '行版本号，用来处理锁',
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint(20) NOT NULL DEFAULT '-1',
+  `last_updated_by` bigint(20) NOT NULL DEFAULT '-1',
+  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`inv_transactions_id`),
+  KEY `o2inv_transaction_n1` (`processing_status_code`) USING BTREE,
+  KEY `o2inv_transaction_n2` (`processing_status_code`,`sku_code`) USING BTREE,
+  KEY `o2inv_transaction_n3` (`wms_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='库存事务明细';
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `inv_transaction_1`;
+CREATE TABLE `inv_transaction_1` (
+                                     `inv_transactions_id` bigint(20) NOT NULL,
+                                     `pos_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '服务点编码',
+                                     `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'sku商品编码',
+                                     `transaction_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '事务编码',
+                                     `transaction_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事务类型，值集：O2INV.TRANSACTION_TYPE',
+                                     `processing_status_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '处理状态，值集：O2INV.PROCESSING_STATUS',
+                                     `on_hand_inc` bigint(20) NOT NULL COMMENT '现有量',
+                                     `reserved_inc` bigint(20) NOT NULL COMMENT '保留量',
+                                     `message` varchar(4000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '错误消息',
+                                     `source_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源',
+                                     `source_detail_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源明细',
+                                     `transaction_source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '触发来源',
+                                     `source_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '来源类型.值集：O2INV.SOURCE_TYPE',
+                                     `source_date` datetime NOT NULL COMMENT '来源时间',
+                                     `source_timestamp` bigint(20) DEFAULT '0' COMMENT '事务来源时间戳',
+                                     `wms_operator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'WMS操作人',
+                                     `wms_id` bigint(20) DEFAULT NULL COMMENT 'wms事务id',
+                                     `object_version_number` bigint(20) NOT NULL DEFAULT '1' COMMENT '行版本号，用来处理锁',
+                                     `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                     `created_by` bigint(20) NOT NULL DEFAULT '-1',
+                                     `last_updated_by` bigint(20) NOT NULL DEFAULT '-1',
+                                     `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                     PRIMARY KEY (`inv_transactions_id`),
+                                     KEY `o2inv_transaction_n1` (`processing_status_code`) USING BTREE,
+                                     KEY `o2inv_transaction_n2` (`processing_status_code`,`sku_code`) USING BTREE,
+                                     KEY `o2inv_transaction_n3` (`wms_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='库存事务明细';
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `inv_transaction_2`;
+CREATE TABLE `inv_transaction_2` (
+                                     `inv_transactions_id` bigint(20) NOT NULL,
+                                     `pos_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '服务点编码',
+                                     `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'sku商品编码',
+                                     `transaction_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '事务编码',
+                                     `transaction_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事务类型，值集：O2INV.TRANSACTION_TYPE',
+                                     `processing_status_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '处理状态，值集：O2INV.PROCESSING_STATUS',
+                                     `on_hand_inc` bigint(20) NOT NULL COMMENT '现有量',
+                                     `reserved_inc` bigint(20) NOT NULL COMMENT '保留量',
+                                     `message` varchar(4000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '错误消息',
+                                     `source_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源',
+                                     `source_detail_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源明细',
+                                     `transaction_source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '触发来源',
+                                     `source_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '来源类型.值集：O2INV.SOURCE_TYPE',
+                                     `source_date` datetime NOT NULL COMMENT '来源时间',
+                                     `source_timestamp` bigint(20) DEFAULT '0' COMMENT '事务来源时间戳',
+                                     `wms_operator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'WMS操作人',
+                                     `wms_id` bigint(20) DEFAULT NULL COMMENT 'wms事务id',
+                                     `object_version_number` bigint(20) NOT NULL DEFAULT '1' COMMENT '行版本号，用来处理锁',
+                                     `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                     `created_by` bigint(20) NOT NULL DEFAULT '-1',
+                                     `last_updated_by` bigint(20) NOT NULL DEFAULT '-1',
+                                     `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                     PRIMARY KEY (`inv_transactions_id`),
+                                     KEY `o2inv_transaction_n1` (`processing_status_code`) USING BTREE,
+                                     KEY `o2inv_transaction_n2` (`processing_status_code`,`sku_code`) USING BTREE,
+                                     KEY `o2inv_transaction_n3` (`wms_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='库存事务明细';
+
+SET FOREIGN_KEY_CHECKS = 1;
