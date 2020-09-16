@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 库存事务表
@@ -46,15 +47,15 @@ public class InvTransaction {
 
     private String sourceTypeCode;
 
-    private LocalDateTime sourceDate;
+    private Date sourceDate;
 
     private Long sourceTimestamp;
 
-    private LocalDateTime creationDate;
+    private Date creationDate;
 
     private Long createdBy;
 
-    private LocalDateTime lastUpdateDate;
+    private Date lastUpdateDate;
 
     private Long lastUpdatedBy;
 
