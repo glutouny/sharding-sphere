@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class InvTransactionController {
             invTransaction.setProcessingStatusCode("PENDING");
             invTransaction.setReservedInc(0L);
             invTransaction.setSourceTypeCode("123");
-            invTransaction.setSourceDate(LocalDateTime.now());
+            invTransaction.setSourceDate(new Date());
             invTransactionList.add(invTransaction);
         }
 

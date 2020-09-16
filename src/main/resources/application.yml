@@ -18,14 +18,21 @@ sharding:
           inv_transaction:
             actual-data-nodes: master.inv_transaction_$->{0..2}
             table-strategy:
-              inline:
-                sharding-column: inv_transactions_id
-                algorithm-expression: inv_transaction_$->{inv_transactions_id %3} # 分片算法表达式
+#              inline:
+#                sharding-column: inv_transactions_id
+#                algorithm-expression: inv_transaction_$->{inv_transactions_id %3} # 分片算法表达式
+              # 自定义分片算法代码实现
+              standard:
+                sharding-column: transaction_code
+                precise-algorithm-class-name: com.yangl.shardingsphere.config.sharding.InvPreciseShardingAlgorithm
             key-generator-column-name: inv_transactions_id
+            # 指定 t_order表的分片策略，分片策略包括分片键和分片算法
+
       #打印执行的数据库以及语句
       props:
         sql:
           show: true
+# 指定 t_order表的分片策略，分片策略包括分片键和分片算法
 
 spring:
   main:
