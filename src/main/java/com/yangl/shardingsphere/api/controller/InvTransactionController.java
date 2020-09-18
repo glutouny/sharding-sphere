@@ -21,7 +21,7 @@ public class InvTransactionController {
     @Autowired
     private InvTransactionService invTransactionService;
 
-    @PostMapping("save-user")
+    @PostMapping("save-inv")
     public Object insertInv() {
         List<InvTransaction> invTransactionList = new ArrayList<>();
         install(invTransactionList);
@@ -32,7 +32,7 @@ public class InvTransactionController {
         return "success";
     }
 
-    @GetMapping("query-user")
+    @GetMapping("query-inv")
     public List<InvTransaction> queryInv() {
         List<InvTransaction> list = invTransactionService.list();
         return list;
